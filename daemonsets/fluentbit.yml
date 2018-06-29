@@ -18,15 +18,8 @@ spec:
     spec:
       containers:
       - name: fluent-bit
-        image: fluent/fluent-bit:0.13.4
+        image: oratos/fluent-bit-out-syslog
         imagePullPolicy: Always
-        env:
-        - name:  SYSLOG_ADDR
-          value: localhost:8080 ## TODO
-        command:
-          - /fluent-bit/bin/fluent-bit
-          - -c
-          - /fluent-bit/etc/fluent-bit.conf
         resources:
           limits:
             memory: 100Mi
