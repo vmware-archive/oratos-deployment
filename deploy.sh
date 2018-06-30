@@ -14,12 +14,15 @@ function single_yml_config {
         roles/*.yml \
         "$@" \
     ; do
+        if [ "$skip_loggregator" = "yes" ] && [[ "${f}" == *loggregator*.yml ]] ; then
+           continue
+        fi
         echo ---
         cat "$f";
     done
 }
 
-function patch_objects {
+function patch_loggregator_objects {
     # this is done in order to force rolling of components on update
     # for instance if a configmap or secret value is changed and needs to be
     # reloaded from disk or env
@@ -40,5 +43,9 @@ function patch_objects {
     fi
 }
 
+skip_loggregator=${1:-"no"}
+
 single_yml_config "$@" | kubectl apply -f -
-patch_objects
+if [ "$skip_loggregator" = "no" ]; then
+    patch_loggregator_objects
+fi
