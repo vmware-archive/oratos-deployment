@@ -26,4 +26,4 @@ kubectl get daemonset -n oratos | grep fluent-bit 1>/dev/null 2>&1
 
 # TODO: better way
 echo "Confirm one fluent-bit running pod for each k8s node"
-[ $(kubectl get nodes | grep -v NAME | wc -l) -eq $(kubectl get pods -n oratos | grep fluent-bit | grep Running | wc -l) ]
+[ "$(kubectl get nodes | grep -c NAME)" -eq "$(kubectl get pods -n oratos | grep fluent-bit | grep -c Running)" ]
