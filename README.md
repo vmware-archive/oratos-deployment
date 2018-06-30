@@ -1,3 +1,15 @@
+Table of Contents
+=================
+
+   * [Oratos Kubernetes Deployment](#oratos-kubernetes-deployment)
+      * [Prerequisites](#prerequisites)
+      * [How To Test](#how-to-test)
+         * [Generate TLS Certs and Keys](#generate-tls-certs-and-keys)
+         * [Deploying](#deploying)
+         * [Destroying](#destroying)
+         * [Configuring the syslog drains for the Syslog Nozzle.](#configuring-the-syslog-drains-for-the-syslog-nozzle)
+         * [Accessing logs via LogCache](#accessing-logs-via-logcache)
+      * [Test In Minikube](#test-in-minikube)
 
 # Oratos Kubernetes Deployment
 
@@ -14,7 +26,7 @@ This repo contains the objects required to run loggregator on kubernetes.
 **Note**: This project is currently experimental and may change in breaking
 ways.
 
-### Prerequisites
+## Prerequisites
 
 - A k8s cluster up and running.
 - `kubectl` installed locally and configured to target your k8s cluster
@@ -22,6 +34,7 @@ ways.
 - `docker` installed locally and configured to target a `dockerd` for running a
   certificate generation container.
 
+## How To Test
 ### Generate TLS Certs and Keys
 
 To generate TLS certs and keys for your loggregator deployment you need to run
@@ -95,3 +108,18 @@ kubectl apply -f optional/deployments/syslog-nozzle.yml
 1. [Install the stand alone log-cache-cli][log-cache-cli].
 
 [log-cache-cli]: https://github.com/cloudfoundry/log-cache-cli#stand-alone-cli
+
+## Test In Minikube
+
+```
+cd ./tests/minikube/
+
+# Run deployment test
+make
+
+# Check status
+make status
+
+# Destroy
+make destroy
+```
