@@ -14,10 +14,9 @@ function single_yml_config {
         roles/*.yml \
         "$@" \
     ; do
-        if [ "$skip_loggregator" == "yes" ]; then
-            if [[ "${f}" == *loggregator*.yml ]] || [[ "${f}" == *log-cache*.yml ]]; then
+        if [ "$skip_loggregator" == "yes" ] && \
+               ([[ "${f}" == *loggregator*.yml ]] || [[ "${f}" == *log-cache*.yml ]]); then
                 continue
-            fi
         fi
         echo ---
         cat "$f";
