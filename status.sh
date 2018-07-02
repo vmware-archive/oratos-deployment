@@ -18,11 +18,11 @@ sleep 5
 
 echo "Confirm confimap has been created correctly"
 kubectl get configmap -n oratos
-kubectl get configmap -n oratos | grep fluent-bit-config 1>/dev/null 2>&1
+kubectl get configmap -n oratos | grep fluent-bit-config >/dev/null 2>&1
 
 echo "Confirm daemonset is created correctly"
 kubectl get daemonset -n oratos
-kubectl get daemonset -n oratos | grep fluent-bit 1>/dev/null 2>&1
+kubectl get daemonset -n oratos | grep fluent-bit >/dev/null 2>&1
 
 # TODO: better way
 echo "Confirm one fluent-bit running pod for each k8s node"

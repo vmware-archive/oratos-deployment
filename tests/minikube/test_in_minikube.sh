@@ -5,16 +5,16 @@
 ## Description :
 ## --
 ## Created : <2018-06-29>
-## Updated: Time-stamp: <2018-07-02 14:56:16>
+## Updated: Time-stamp: <2018-07-02 15:04:23>
 ##-------------------------------------------------------------------
 set -e
-. library.sh
+source library.sh
 
 function generate_certs {
     if [ -f ./secrets/loggregator-tls-certs.yml ]; then
         echo "No need to generate secrets"
     else
-        (cd ./secrets && bash -e ./generate-tls-certs.sh)
+        (cd ./secrets && bash ./generate-tls-certs.sh)
     fi
 }
 ################################################################################
