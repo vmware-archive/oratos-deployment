@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-##-------------------------------------------------------------------
-## File: test_in_minikube.sh
-## Author : Denny <zdenny@vmware.com>
-## Description :
-## --
-## Created : <2018-06-29>
-## Updated: Time-stamp: <2018-07-02 15:04:23>
-##-------------------------------------------------------------------
+
 set -e
 source library.sh
 
@@ -17,7 +10,7 @@ function generate_certs {
         (cd ./secrets && bash ./generate-tls-certs.sh)
     fi
 }
-################################################################################
+
 verify_docker
 verify_minikube
 
@@ -36,6 +29,3 @@ case $1 in
         echo "No supported action: $1"
         exit 1
 esac
-                       
-
-## File: test_in_minikube.sh ends

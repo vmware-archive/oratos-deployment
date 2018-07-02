@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-##-------------------------------------------------------------------
-## File: library.sh
-## Author : Denny <zdenny@vmware.com>
-## Description :
-## --
-## Created : <2018-06-29>
-## Updated: Time-stamp: <2018-07-02 15:00:48>
-##-------------------------------------------------------------------
+
 set -e
 
 function verify_docker {
@@ -35,4 +28,3 @@ function start_minikube {
         minikube start
     fi
 }
-## File: library.sh ends
