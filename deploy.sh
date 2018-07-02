@@ -14,8 +14,10 @@ function single_yml_config {
         roles/*.yml \
         "$@" \
     ; do
-        if [ "$skip_loggregator" = "yes" ] && [[ "${f}" == *loggregator*.yml ]] ; then
-           continue
+        if [ "$skip_loggregator" == "yes" ]; then
+            if [[ "${f}" == *loggregator*.yml ]] || [[ "${f}" == *log-cache*.yml ]]; then
+                continue
+            fi
         fi
         echo ---
         cat "$f";
@@ -44,6 +46,7 @@ function patch_loggregator_objects {
 }
 
 skip_loggregator=${1:-"no"}
+shift
 
 single_yml_config "$@" | kubectl apply -f -
 if [ "$skip_loggregator" = "no" ]; then
