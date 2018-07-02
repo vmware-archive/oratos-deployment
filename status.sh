@@ -1,5 +1,5 @@
 #!/bin/bash
-function shell_exit() {
+function shell_exit {
     errcode=$?
     if [ $errcode -eq 0 ]; then
         echo "Status check is fine"

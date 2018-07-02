@@ -5,18 +5,18 @@
 ## Description :
 ## --
 ## Created : <2018-06-29>
-## Updated: Time-stamp: <2018-06-29 16:05:15>
+## Updated: Time-stamp: <2018-07-02 14:56:13>
 ##-------------------------------------------------------------------
 set -e
 
-function verify_docker() {
+function verify_docker {
     if ! command -v docker 1>/dev/null 2>&1; then
         echo "docker not installed. Please confirm it's properly installed"
         exit 1
     fi
 }
 
-function verify_minikube() {
+function verify_minikube {
     if ! command -v minikube 1>/dev/null 2>&1; then
         echo "minikube not installed. Please confirm it's properly installed"
         exit 1
@@ -27,7 +27,7 @@ function verify_minikube() {
     fi
 }
 
-function start_minikube() {
+function start_minikube {
     if minikube status | grep Running 1>/dev/null 2>&1; then
         echo "minikube is already started"
     else
