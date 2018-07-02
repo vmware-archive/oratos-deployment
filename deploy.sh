@@ -15,7 +15,7 @@ function single_yml_config {
         "$@" \
     ; do
         if [ "$skip_loggregator" == "yes" ] && \
-               ([[ "${f}" == *loggregator*.yml ]] || [[ "${f}" == *log-cache*.yml ]]); then
+               echo "$f" | grep -E 'loggregator.*.yml|log-cache.*.yml' >/dev/null; then
                 continue
         fi
         echo ---
@@ -44,8 +44,42 @@ function patch_loggregator_objects {
     fi
 }
 
-skip_loggregator=${1:-"no"}
-shift
+BIN_NAME=$(basename "$0")
+
+help()
+{
+cat <<EOF
+${BIN_NAME}
+Usage: ${BIN_NAME} [ -s|--skip-loggregator ]
+
+Run deployment test
+  -s, --skip-loggregator   skip loggregator for testing
+  -h, --help               display this help
+EOF
+    exit 0
+}
+
+skip_loggregator="no"
+
+for arg in "$@"
+do
+    case "$arg" in
+        -s|--skip-loggregator)
+            shift
+            skip_loggregator="yes"
+            ;;
+        -h|--help)
+            help
+            shift
+            exit 0
+            ;;
+        --)
+            echo "break"
+            shift
+            break
+            ;;
+    esac
+done
 
 single_yml_config "$@" | kubectl apply -f -
 if [ "$skip_loggregator" = "no" ]; then

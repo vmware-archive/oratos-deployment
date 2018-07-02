@@ -5,7 +5,7 @@
 ## Description :
 ## --
 ## Created : <2018-06-29>
-## Updated: Time-stamp: <2018-07-02 09:58:36>
+## Updated: Time-stamp: <2018-07-02 14:06:04>
 ##-------------------------------------------------------------------
 set -e
 . library.sh
@@ -26,7 +26,7 @@ case $1 in
         start_minikube
         cd ../../
         generate_certs
-        bash -e ./deploy.sh "yes" && bash -e ./status.sh
+        bash -e ./deploy.sh -s && bash -e ./status.sh
         ;;
     destroy)
         cd ../../
