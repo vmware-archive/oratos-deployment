@@ -19,8 +19,17 @@ data:
         HTTP_Listen   0.0.0.0
         HTTP_Port     2020
 
+    @INCLUDE inputs.conf
+    @INCLUDE filters.conf
+    @INCLUDE outputs.conf
+
+  inputs.conf: |
     @INCLUDE input-kubernetes.conf
+
+  filters.conf: |
     @INCLUDE filter-kubernetes.conf
+
+  outputs.conf: |
     @INCLUDE output-file.conf
 
   input-kubernetes.conf: |
