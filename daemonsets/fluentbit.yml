@@ -34,6 +34,12 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
+        - name: varvcapstore
+          mountPath: /var/vcap/store
+          readOnly: true
+        - name: varvcapdata
+          mountPath: /var/vcap/data
+          readOnly: true
       terminationGracePeriodSeconds: 10
       volumes:
       - name: varlog
@@ -42,6 +48,12 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
+      - name: varvcapstore
+        hostPath:
+          path: /var/vcap/store/
+      - name: varvcapdata
+        hostPath:
+          path: /var/vcap/data/
       - name: fluent-bit-config
         configMap:
           name: fluent-bit-config
